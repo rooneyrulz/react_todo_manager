@@ -1,0 +1,4 @@
+{
+  "MONGO_URI": "mongodb://localhost:27017/react_todo_manager",
+  "JWT_KEY": "react_todo_manager@jwt.com"
+}

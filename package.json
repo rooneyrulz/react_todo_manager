@@ -6,6 +6,10 @@
   "repository": "https://github.com/rooneyrulz/react_todo_manager.git",
   "author": "rooneyrulz <roony0782045336@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node -r esm server.js",
+    "server": "nodemon -r esm server.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.4",
