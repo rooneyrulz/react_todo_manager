@@ -22,6 +22,11 @@ const userSchema = new Schema({
     required: [true, 'email is required...'],
   },
 
+  password: {
+    type: String,
+    required: [true, 'password is required...'],
+  },
+
   todos: [
     {
       type: Schema.Types.ObjectId,

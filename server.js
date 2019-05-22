@@ -10,6 +10,8 @@ import db from './config/db';
 // Import Routes
 import testRoute from './routes/api';
 import todoRoute from './routes/api/todo';
+import userRoute from './routes/api/user';
+import authRoute from './routes/api/auth';
 
 const app = express();
 const server = createServer(app);
@@ -46,5 +48,9 @@ app.use((req, res, next) => {
 // Use Routes
 app.use('/api/test', testRoute);
 app.use('/api', todoRoute);
+app.use('/api', userRoute);
+app.use('/api', authRoute);
 
-server.listen(5000, () => console.log('server running on port 5000...'));
+server.listen(process.env.PORT || 5000, () =>
+  console.log(`server running on port ${process.env.PORT || 5000}...`)
+);
