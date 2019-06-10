@@ -7,6 +7,13 @@ import config from 'config';
 import User from '../models/userSchema';
 import Todo from '../models/todoSchema';
 
+// Import Validations
+import {
+  validateEmail,
+  validateUsername,
+  validatePassword,
+} from '../validations/userValidate';
+
 // @Route   >   GET /api/users
 // @Desc    >   Get All Users
 // @Access  >   Public
@@ -58,10 +65,22 @@ export const getUser = async (req, res, next) => {
 // @Access  >   Public
 export const addUser = async (req, res, next) => {
   try {
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, cPassword } = req.body;
 
-    if (!name || !username || !email || !password) {
+    if (!name || !username || !email || !password || !cPassword) {
       return res.status(409).send('Please fill out all fields!');
+    }
+
+    if (!validateEmail(email)) {
+      return res.status(409).send('Invalid email id!');
+    }
+
+    if (!validateUsername(username)) {
+      return res.status(409).send('Invalid username!');
+    }
+
+    if (!validatePassword(password, cPassword)) {
+      return res.status(409).send('Password is not match!');
     }
 
     const isUsernameExist = await User.findOne({ username }).exec();

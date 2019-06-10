@@ -7,8 +7,10 @@
   "author": "rooneyrulz <roony0782045336@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "frontend": "npm start --prefix frontend",
     "start": "node -r esm server.js",
-    "server": "nodemon -r esm server.js"
+    "server": "nodemon -r esm server.js",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

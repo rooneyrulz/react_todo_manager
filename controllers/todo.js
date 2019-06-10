@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import Todo from '../models/todoSchema';
 import User from '../models/userSchema';
 
+// Import Validations
+import validateTodo from '../validations/todoValidate';
+
 // @Route   >   GET /api/todos
 // @Desc    >   Get All Todos
 // @Access  >   Public
@@ -62,6 +65,10 @@ export const addTodo = async (req, res, next) => {
       return res.status(409).send('Invalid fields!');
     }
 
+    if (!validateTodo(name)) {
+      return res.status(409).send('Invalid todo name!');
+    }
+
     const author = await User.findOne({ _id: id }).exec();
 
     if (!author) {
@@ -88,18 +95,10 @@ export const addTodo = async (req, res, next) => {
       todo: newTodo,
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     return res.status(500).send('Something went wrong!');
   }
 };
-
-// @Route   >   PUT /api/todo/:id
-// @Desc    >   Update Todo
-// @Access  >   Public
-export const updateTodo = async (req, res, next) =>
-  res.status(200).json({
-    msg: `Update todo..`,
-  });
 
 // @Route   >   DELETE /api/todo/:id
 // @Desc    >   Delete Todo
@@ -123,6 +122,7 @@ export const deleteTodo = async (req, res, next) => {
 
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < userWithTodo.todos.length; i++) {
+      // eslint-disable-next-line eqeqeq
       if (userWithTodo.todos[i] == _id) {
         userWithTodo.todos.splice(i, 1);
       }

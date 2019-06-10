@@ -1,12 +1,6 @@
 import { Router } from 'express';
 
-import {
-  getTodos,
-  getTodo,
-  updateTodo,
-  addTodo,
-  deleteTodo,
-} from '../../controllers/todo';
+import { getTodos, getTodo, addTodo, deleteTodo } from '../../controllers/todo';
 
 // Import Auth Middleware
 import isAuth from '../../middleware/auth';
@@ -27,11 +21,6 @@ router.get('/todo/:id', getTodo);
 // @Desc    >   Add Todo
 // @Access  >   Public
 router.post('/todo', isAuth, addTodo);
-
-// @Route   >   PUT /api/todo/:id
-// @Desc    >   Update Todo
-// @Access  >   Public
-router.put('/todo/:id', isAuth, updateTodo);
 
 // @Route   >   DELETE /api/todo/:id
 // @Desc    >   Delete Todo
