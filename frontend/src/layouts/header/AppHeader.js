@@ -1,46 +1,58 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
   NavItem,
   Nav,
-  NavLink,
   NavbarToggler,
   Container,
   Collapse
-} from 'reactstrap';
+} from "reactstrap";
 
-import Signup from '../../components/auth/signup/Signup';
+import Signup from "../../components/auth/signup/Signup";
+import Login from "../../components/auth/login/Login";
 
 const AppHeader = () => {
   const [state, setState] = useState({ isOpen: false });
 
   const toggle = () => {
-    setState((prev) => {
-      return { ...prev, isOpen: !prev.isOpen };
-    });
-  }
+    setState({ ...state, isOpen: !state.isOpen });
+  };
   return (
     <Navbar dark color="dark" expand="sm">
       <Container>
         <NavbarBrand href="/home">Todo Manager</NavbarBrand>
-        <NavbarToggler onClick={ toggle } />
-        <Collapse isOpen={ state.isOpen } className="navbar-collapse">
-          <Nav className="navbar-nav">
-            <NavItem>
-              <NavLink href="/home">HOME</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/todos">TODOS</NavLink>
-            </NavItem>
-            <NavItem>
-              <Signup />
-            </NavItem>
-          </Nav>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={state.isOpen} className="navbar-collapse">
+          <Fragment>
+            <Nav className="navbar-nav ml-auto">
+              <NavItem>
+                <Signup />
+              </NavItem>
+              <NavItem>
+                <Login />
+              </NavItem>
+            </Nav>
+          </Fragment>
+          <Fragment>
+            <Nav className="navbar-nav ml-auto">
+              <NavItem>
+                <NavLink className="nav-link" exact to="/home">
+                  HOME
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" exact to="/todos">
+                  TODOS
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Fragment>
         </Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
 export default AppHeader;

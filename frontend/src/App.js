@@ -1,27 +1,30 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import AppHeader from './layouts/header/AppHeader';
-import Todos from './pages/todos/Todos';
-import './App.css';
+import AppHeader from "./layouts/header/AppHeader";
+import RoutingComponents from "./components/routing/routes";
+import "./App.css";
+
+import store from "./store";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Fragment>
-        <header>
-          <AppHeader />
-        </header>
-        <main className="App">
-          <Switch>
-            <Redirect exact from="/" to="/todos" />
-            <Route exact path="/home" component={null} />
-            <Route exact path="/todos" component={Todos} />
-          </Switch>
-        </main>
-      </Fragment>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Fragment>
+          <header className="mb-5">
+            <AppHeader />
+          </header>
+          <main className="App">
+            <Switch>
+              <Route component={RoutingComponents} />
+            </Switch>
+          </main>
+        </Fragment>
+      </BrowserRouter>
+    </Provider>
   );
-}
+};
 
 export default App;
