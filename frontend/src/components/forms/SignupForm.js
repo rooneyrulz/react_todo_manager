@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import PropTypes from "prop-types";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-const SignupForm = ({ toggle }) => {
+const SignupForm = ({ registerUser, error }) => {
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -17,22 +18,51 @@ const SignupForm = ({ toggle }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+    const payload = {
+      name,
+      username,
+      email,
+      password,
+      cPassword
+    };
+    registerUser(payload);
   };
 
   return (
     <Form onSubmit={onSubmit}>
+      {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" type="text" onChange={onChange} />
+        <Input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Name"
+          onChange={onChange}
+        />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="username">Username</Label>
-        <Input id="username" name="username" type="text" onChange={onChange} />
+        <Input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Username"
+          onChange={onChange}
+        />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" onChange={onChange} />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          onChange={onChange}
+        />
+        <small className="form-text text-muted">
+          We never share your email with anyone!
+        </small>
       </FormGroup>
       <FormGroup>
         <Label htmlFor="password">Password</Label>
@@ -40,6 +70,7 @@ const SignupForm = ({ toggle }) => {
           id="password"
           name="password"
           type="password"
+          placeholder="Password"
           onChange={onChange}
         />
       </FormGroup>
@@ -49,14 +80,20 @@ const SignupForm = ({ toggle }) => {
           id="cPassword"
           name="cPassword"
           type="password"
+          placeholder="Confirm Password"
           onChange={onChange}
         />
       </FormGroup>
-      <Button color="dark" type="submit" onClick={toggle}>
+      <Button color="success" className="btn-block" type="submit">
         Sign Up
       </Button>
     </Form>
   );
+};
+
+SignupForm.propTypes = {
+  error: PropTypes.object,
+  registerUser: PropTypes.func.isRequired
 };
 
 export default SignupForm;

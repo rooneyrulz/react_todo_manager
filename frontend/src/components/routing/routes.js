@@ -13,7 +13,6 @@ const routes = ({ error }) => {
   return (
     <Container>
       <Fragment>
-        {appendAlert}
         <Switch>
           <Redirect exact from="/" to="/todos" />
           <Route exact path="/home" component={Home} />

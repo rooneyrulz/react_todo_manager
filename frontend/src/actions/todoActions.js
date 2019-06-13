@@ -1,7 +1,9 @@
 import axios from "axios";
 import { ITEMS_LOADING, GET_ITEMS, ADD_ITEM, DELETE_ITEM } from "./types";
 
-import { getErrors } from "./errorActions";
+import { getErrors, clearErrors } from "./errorActions";
+
+const uri = "http://localhost:5000";
 
 export const getTodos = () => async dispatch => {
   // Dispatch Loading
@@ -11,17 +13,20 @@ export const getTodos = () => async dispatch => {
 
   try {
     // Get Todos
-    const { data } = await axios.get("/api/todos");
-    const {todos} = data;
+    const { data } = await axios.get(`${uri}/api/todos`);
+    const { todos } = data;
 
     // Dispatch Get Items
     dispatch({
       type: GET_ITEMS,
       payload: todos
     });
+
+    // Dispatch Clear Error
+    // dispatch(clearErrors());
   } catch (error) {
     console.log(error.message);
-    // Dispatch Get Errors 
+    // Dispatch Get Errors
     dispatch(getErrors(error.response.data, error.response.status));
   }
 };

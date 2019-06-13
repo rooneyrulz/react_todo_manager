@@ -4,7 +4,7 @@ import { Row } from 'reactstrap';
 
 import { getTodos } from '../../actions/todoActions';
 import Spinner from '../../components/spinner/Spinner';
-import Todo from '../../components/Todo';
+import Todo from '../../components/todo/Todo';
 
 class Todos extends Component {
 
