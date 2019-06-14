@@ -12,6 +12,7 @@ import {
   Collapse
 } from "reactstrap";
 
+import "./AppHeader.css";
 import Signup from "../../components/auth/signup/Signup";
 import Login from "../../components/auth/login/Login";
 
@@ -24,7 +25,7 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
     setState({ ...state, isOpen: !state.isOpen });
   };
   return (
-    <Navbar dark color="dark" expand="md">
+    <Navbar className="AppNavbar" dark expand="md">
       <Container>
         <NavbarBrand href="/home">Todo Manager</NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -32,11 +33,13 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
           <Fragment>
             <Nav className="navbar-nav ml-auto">
               {isAuthenticated ? (
-                <NavItem>
-                  <NavLink onClick={logOutUser} className="nav-link" to="#!">
-                    SIGN OUT
-                  </NavLink>
-                </NavItem>
+                <Fragment>
+                  <NavItem>
+                    <NavLink onClick={logOutUser} className="nav-link" to="#!">
+                      SIGN OUT
+                    </NavLink>
+                  </NavItem>
+                </Fragment>
               ) : (
                 <Fragment>
                   <NavItem>
@@ -51,14 +54,36 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
           </Fragment>
           <Fragment>
             <Nav className="navbar-nav ml-auto">
-              <NavItem>
-                <NavLink className="nav-link" exact to="/home">
-                  HOME
-                </NavLink>
-              </NavItem>
+              {isAuthenticated ? (
+                <Fragment>
+                  <NavItem>
+                    <NavLink className="nav-link" exact to="/dashboard">
+                      DASHBOARD
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className="nav-link" exact to="/store">
+                      STORE
+                    </NavLink>
+                  </NavItem>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <NavItem>
+                    <NavLink className="nav-link" exact to="/home">
+                      HOME
+                    </NavLink>
+                  </NavItem>
+                </Fragment>
+              )}
               <NavItem>
                 <NavLink className="nav-link" exact to="/todos">
                   TODOS
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" exact to="/about">
+                  ABOUT
                 </NavLink>
               </NavItem>
             </Nav>

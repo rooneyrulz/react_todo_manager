@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-const LoginForm = ({ toggle }) => {
+import "./Forms.css";
+
+const LoginForm = ({ loginUser, error }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -14,14 +16,26 @@ const LoginForm = ({ toggle }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+    const payload = {
+      username,
+      password
+    };
+
+    loginUser(payload);
   };
 
   return (
     <Form onSubmit={onSubmit}>
+      {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="username">Username</Label>
-        <Input id="username" name="username" type="text" onChange={onChange} />
+        <Input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Username"
+          onChange={onChange}
+        />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="password">Password</Label>
@@ -29,11 +43,12 @@ const LoginForm = ({ toggle }) => {
           id="password"
           name="password"
           type="password"
+          placeholder="Password"
           onChange={onChange}
         />
       </FormGroup>
-      <Button color="dark" type="submit" onClick={toggle}>
-        Login
+      <Button className="btn-login btn-block" type="submit">
+        SIGN IN
       </Button>
     </Form>
   );

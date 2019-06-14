@@ -60,7 +60,7 @@ class Signup extends Component {
           SIGN UP
         </NavLink>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Register User</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Sign Up</ModalHeader>
           <ModalBody>
             <SignupForm
               registerUser={this.props.registerUser}

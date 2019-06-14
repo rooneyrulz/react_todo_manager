@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import AppHeader from "./layouts/header/AppHeader";
-import RoutingComponents from "./components/routing/routes";
+import RoutingComponents from "./components/routing/Routes";
 import "./App.css";
 
 import store from "./store";

@@ -8,11 +8,13 @@ import {
   CardText
 } from "reactstrap";
 
+import "./Todo.css";
+
 const Todo = ({ todo }) => {
   return (
     <Fragment>
       <Col sm="12" md="6" lg="4" className="mb-4">
-        <Card color="success">
+        <Card className="card-todo">
           <CardBody>
             <CardTitle className="text-light">{todo.name}</CardTitle>
           </CardBody>

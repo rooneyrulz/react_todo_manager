@@ -99,6 +99,43 @@ export const registerUser = ({
   }
 };
 
+// Login User
+export const loginUser = ({
+  username,
+  password
+}) => async dispatch => {
+  // Define Header Value
+  const config = {
+    header: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const body = { username, password };
+
+  try {
+    const { data } = await axios.post(`${uri}/api/auth`, body, config);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data
+    });
+
+    // Dispatch Load User
+    dispatch(loadUser());
+  } catch (error) {
+    console.log(error.message);
+
+    // Dispatch Login Fail
+    dispatch({
+      type: LOGIN_FAIL
+    });
+
+    // Dispatch Get Errors
+    dispatch(getErrors(error.response.data, error.response.status, 'LOGIN_FAIL'));
+  }
+};
+
 // LogOut User
 export const logOutUser = () => dispatch => {
   dispatch({

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+
+import "./Forms.css";
 
 const SignupForm = ({ registerUser, error }) => {
   const [formData, setFormData] = useState({
@@ -84,16 +85,11 @@ const SignupForm = ({ registerUser, error }) => {
           onChange={onChange}
         />
       </FormGroup>
-      <Button color="success" className="btn-block" type="submit">
+      <Button className="btn-signup btn-block" type="submit">
         Sign Up
       </Button>
     </Form>
   );
-};
-
-SignupForm.propTypes = {
-  error: PropTypes.object,
-  registerUser: PropTypes.func.isRequired
 };
 
 export default SignupForm;
