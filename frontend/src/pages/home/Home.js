@@ -1,11 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
-export default class Todos extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Home</h1>
-      </div>
-    );
-  }
-}
+const Todos = ({ auth: { isAuthenticated }, history }) => {
+  if (isAuthenticated) history.push("/todos");
+
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Todos);

@@ -95,15 +95,14 @@ export const registerUser = ({
     });
 
     // Dispatch Get Errors
-    dispatch(getErrors(error.response.data, error.response.status, 'REGISTER_FAIL'));
+    dispatch(
+      getErrors(error.response.data, error.response.status, "REGISTER_FAIL")
+    );
   }
 };
 
 // Login User
-export const loginUser = ({
-  username,
-  password
-}) => async dispatch => {
+export const loginUser = ({ username, password }) => async dispatch => {
   // Define Header Value
   const config = {
     header: {
@@ -132,7 +131,9 @@ export const loginUser = ({
     });
 
     // Dispatch Get Errors
-    dispatch(getErrors(error.response.data, error.response.status, 'LOGIN_FAIL'));
+    dispatch(
+      getErrors(error.response.data, error.response.status, "LOGIN_FAIL")
+    );
   }
 };
 

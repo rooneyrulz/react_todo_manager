@@ -2,9 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 
-import { getTodos } from '../../actions/todoActions';
 import Spinner from '../../components/spinner/Spinner';
 import Todo from '../../components/todo/Todo';
+import AddTodo from '../../components/addTodo/AddTodo';
+import './Todos.css';
+
+import { getTodos } from '../../actions/todoActions';
 
 class Todos extends Component {
 
@@ -22,7 +25,10 @@ class Todos extends Component {
 
     return (
       <section id="todos">
-        <h1>Todos</h1>
+        <div className="todo-header">
+          <h1 className="display-4">Todos</h1>
+          {this.props.isAuthenticated ? <AddTodo /> : null}
+        </div>
         <hr />
         <Row>{appendContent}</Row>
       </section>
@@ -32,7 +38,8 @@ class Todos extends Component {
 
 const mapStateToProps = state => ({
   todo: state.todo,
-  error: state.error
+  error: state.error,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getTodos })(Todos);

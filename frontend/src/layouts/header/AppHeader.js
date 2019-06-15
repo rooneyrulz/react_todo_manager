@@ -1,20 +1,17 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
-  NavItem,
-  Nav,
   NavbarToggler,
   Container,
   Collapse
 } from "reactstrap";
 
 import "./AppHeader.css";
-import Signup from "../../components/auth/signup/Signup";
-import Login from "../../components/auth/login/Login";
+import NavLinks from "../navlinks/NavLinks";
 
 import { logOutUser } from "../../actions/authActions";
 
@@ -30,64 +27,10 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
         <NavbarBrand href="/home">Todo Manager</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={state.isOpen} className="navbar-collapse">
-          <Fragment>
-            <Nav className="navbar-nav ml-auto">
-              {isAuthenticated ? (
-                <Fragment>
-                  <NavItem>
-                    <NavLink onClick={logOutUser} className="nav-link" to="#!">
-                      SIGN OUT
-                    </NavLink>
-                  </NavItem>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <NavItem>
-                    <Signup />
-                  </NavItem>
-                  <NavItem>
-                    <Login />
-                  </NavItem>
-                </Fragment>
-              )}
-            </Nav>
-          </Fragment>
-          <Fragment>
-            <Nav className="navbar-nav ml-auto">
-              {isAuthenticated ? (
-                <Fragment>
-                  <NavItem>
-                    <NavLink className="nav-link" exact to="/dashboard">
-                      DASHBOARD
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink className="nav-link" exact to="/store">
-                      STORE
-                    </NavLink>
-                  </NavItem>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <NavItem>
-                    <NavLink className="nav-link" exact to="/home">
-                      HOME
-                    </NavLink>
-                  </NavItem>
-                </Fragment>
-              )}
-              <NavItem>
-                <NavLink className="nav-link" exact to="/todos">
-                  TODOS
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="nav-link" exact to="/about">
-                  ABOUT
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </Fragment>
+          <NavLinks
+            isAuthenticated={isAuthenticated}
+            logOutUser={logOutUser}
+          />
         </Collapse>
       </Container>
     </Navbar>

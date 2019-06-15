@@ -49,6 +49,7 @@ class Login extends Component {
   toggle = () => {
     clearErrors();
     this.setState(prevState => ({
+      ...prevState,
       modal: !prevState.modal
     }));
   };
@@ -65,6 +66,7 @@ class Login extends Component {
             <LoginForm
               loginUser={this.props.loginUser}
               error={this.state.msg}
+              isAuthenticated={this.props.isAuthenticated}
             />
           </ModalBody>
         </Modal>

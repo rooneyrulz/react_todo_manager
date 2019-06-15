@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
 import "./Forms.css";
 
-const LoginForm = ({ loginUser, error }) => {
+const LoginForm = ({ loginUser, error, isAuthenticated, history }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -23,6 +23,8 @@ const LoginForm = ({ loginUser, error }) => {
 
     loginUser(payload);
   };
+
+  if (isAuthenticated) history.push('/dashboard');
 
   return (
     <Form onSubmit={onSubmit}>

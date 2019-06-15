@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
 import "./Forms.css";
 
-const SignupForm = ({ registerUser, error }) => {
+const SignupForm = ({ registerUser, error, isAuthenticated, history }) => {
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -28,6 +28,8 @@ const SignupForm = ({ registerUser, error }) => {
     };
     registerUser(payload);
   };
+
+  if (isAuthenticated) history.push('/dashboard');
 
   return (
     <Form onSubmit={onSubmit}>

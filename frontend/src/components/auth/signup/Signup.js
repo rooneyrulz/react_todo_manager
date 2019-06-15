@@ -65,6 +65,7 @@ class Signup extends Component {
             <SignupForm
               registerUser={this.props.registerUser}
               error={this.state.msg}
+              isAuthenticated={this.props.isAuthenticated}
             />
           </ModalBody>
         </Modal>
