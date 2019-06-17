@@ -26,7 +26,7 @@ class Todos extends Component {
     return (
       <section id="todos">
         <div className="todo-header">
-          <h1 className="display-4">Todos</h1>
+          <h1 className="">Todos</h1>
           {this.props.isAuthenticated ? <AddTodo /> : null}
         </div>
         <hr />

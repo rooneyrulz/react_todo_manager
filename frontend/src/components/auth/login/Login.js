@@ -19,7 +19,7 @@ class Login extends Component {
     error: PropTypes.object.isRequired,
     loginUser: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
-  }
+  };
 
   componentDidUpdate(prevProps) {
     const { error } = this.props;

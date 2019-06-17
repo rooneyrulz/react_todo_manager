@@ -7,7 +7,8 @@ import {
 
 const initialState = {
   items: [],
-  loading: false
+  loading: false,
+  isAdded: false
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         items: payload,
+        isAdded: false,
         loading: false
       };
 
@@ -31,6 +33,7 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         items: [payload, ...state.items],
+        isAdded: true,
         loading: false
       };
 
@@ -38,6 +41,7 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.filter(item => item._id !== payload._id),
+        isAdded: false,
         loading: false
       };
 

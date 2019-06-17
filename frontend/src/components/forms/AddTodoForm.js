@@ -1,9 +1,31 @@
-import React from 'react';
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-const AddTodoForm = () => {
+const AddTodoForm = ({ addTodo, error }) => {
+  const [formData, setFormData] = useState({
+    name: ""
+  });
+
+  const { name } = formData;
+
+  const onHandleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const onHandleSubmit = e => {
+    e.preventDefault();
+    const payload = {
+      name
+    };
+    addTodo(payload);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={onHandleSubmit}>
+      {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="name">Todo</Label>
         <Input
@@ -11,6 +33,7 @@ const AddTodoForm = () => {
           name="name"
           type="text"
           placeholder="Todo"
+          onChange={onHandleChange}
         />
       </FormGroup>
       <Button className="btn-add-todo btn-block" color="success" type="submit">
@@ -18,6 +41,6 @@ const AddTodoForm = () => {
       </Button>
     </Form>
   );
-}
+};
 
 export default AddTodoForm;

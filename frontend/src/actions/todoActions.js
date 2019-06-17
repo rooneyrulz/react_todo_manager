@@ -11,9 +11,15 @@ export const getTodos = () => async dispatch => {
     type: ITEMS_LOADING
   });
 
+  const config = {
+    header: {
+      "Content-Type": "application/json"
+    }
+  };
+
   try {
     // Get Todos
-    const { data } = await axios.get(`${uri}/api/todos`);
+    const { data } = await axios.get(`${uri}/api/todos`, config);
     const { todos } = data;
 
     // Dispatch Get Items
@@ -28,5 +34,29 @@ export const getTodos = () => async dispatch => {
     console.log(error.message);
     // Dispatch Get Errors
     dispatch(getErrors(error.response.data, error.response.status));
+  }
+};
+
+export const addTodo = ({ name }) => async dispatch => {
+  // Set header value
+  const config = {
+    header: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    const { data } = await axios.post(`${uri}/api/todo`, { name }, config);
+    const { todo } = data;
+
+    // Dispatch Add Item
+    dispatch({
+      type: ADD_ITEM,
+      payload: todo
+    });
+  } catch (error) {
+    console.log(error.message);
+    // Dispatch Get Errors
+    dispatch(getErrors(error.response.data, error.response.status, 'ADD_ITEM_FAIL'));
   }
 };
