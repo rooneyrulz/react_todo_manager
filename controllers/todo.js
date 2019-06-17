@@ -100,9 +100,31 @@ export const addTodo = async (req, res, next) => {
   }
 };
 
+// @Route   >   GET /api/todo/auth/todos
+// @Desc    >   Get Todos By Auth User
+// Access   >   Private
+export const getTodoByUser = async (req, res, next) => {
+  const { id } = req.user;
+
+  try {
+    const todos = await Todo.find({ author: id }).exec();
+
+    if (todos.length < 1) {
+      return res.status(409).send(`No todo found!`);
+    }
+
+    return res.status(200).json({
+      todos,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('Something went wrong!');
+  }
+};
+
 // @Route   >   DELETE /api/todo/:id
 // @Desc    >   Delete Todo
-// @Access  >   Public
+// @Access  >   Private
 export const deleteTodo = async (req, res, next) => {
   const { id } = req.user;
   const { _id } = req.params;

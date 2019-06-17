@@ -8,12 +8,11 @@ const AddTodoForm = ({ addTodo, error }) => {
 
   const { name } = formData;
 
-  const onHandleChange = e => {
+  const onHandleChange = e =>
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-  };
 
   const onHandleSubmit = e => {
     e.preventDefault();

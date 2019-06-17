@@ -2,11 +2,13 @@ import {
   ITEMS_LOADING,
   GET_ITEMS,
   ADD_ITEM,
-  DELETE_ITEM
+  DELETE_ITEM,
+  GET_USER_ITEMS
 } from "../actions/types";
 
 const initialState = {
   items: [],
+  userItems: [],
   loading: false,
   isAdded: false
 };
@@ -34,6 +36,14 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         items: [payload, ...state.items],
         isAdded: true,
+        loading: false
+      };
+
+    case GET_USER_ITEMS:
+      return {
+        ...state,
+        userItems: payload,
+        isAdded: false,
         loading: false
       };
 
