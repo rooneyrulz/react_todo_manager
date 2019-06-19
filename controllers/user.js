@@ -34,7 +34,7 @@ export const getUsers = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };
 
@@ -56,7 +56,7 @@ export const getUser = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send(`Something went wrong!`);
+    return res.status(500).send(error.message);
   }
 };
 
@@ -125,7 +125,7 @@ export const addUser = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send(`Something went wrong!`);
+    return res.status(500).send(error.message);
   }
 };
 
@@ -159,6 +159,6 @@ export const deleteUser = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send(`Something went wrong!`);
+    return res.status(500).send(error.message);
   }
 };

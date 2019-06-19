@@ -20,13 +20,10 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
 
 PrivateRoute.propTypes = {
   isAuthenticated: PropTypes.bool
-}
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute);

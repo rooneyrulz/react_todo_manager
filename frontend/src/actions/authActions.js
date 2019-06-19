@@ -11,7 +11,7 @@ import {
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
-import { getErrors, clearErrors } from "./errorActions";
+import { getErrors } from "./errorActions";
 
 const uri = "http://localhost:5000";
 
@@ -43,9 +43,6 @@ export const loadUser = () => async dispatch => {
       type: USER_LOADED,
       payload: user
     });
-
-    // Dispatch Clear Error
-    // dispatch(clearErrors());
   } catch (error) {
     console.log(error.message);
 

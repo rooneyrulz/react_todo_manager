@@ -35,7 +35,4 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Routes);
+export default connect(mapStateToProps)(Routes);

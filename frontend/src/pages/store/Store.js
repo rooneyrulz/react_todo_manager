@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { Row } from "reactstrap";
+import PropTypes from "prop-types";
+import { Row, Alert } from "reactstrap";
 
 import Spinner from "../../components/spinner/Spinner";
 import Todo from "../../components/todo/Todo";
 
 import { getUserTodos } from "../../actions/todoActions";
 
-const Store = ({ auth, todo: { userItems, loading }, getUserTodos }) => {
+const Store = ({ todo: { userItems, loading }, getUserTodos }) => {
   useEffect(() => {
     getUserTodos();
   }, []);
@@ -17,22 +18,28 @@ const Store = ({ auth, todo: { userItems, loading }, getUserTodos }) => {
   ) : (
     <Fragment>
       {userItems.map(item => (
-        <Todo todo={item} key={item._id} isStoreItem={true} />
+        <Todo item={item} key={item._id} isStoreItem={true} />
       ))}
     </Fragment>
   );
 
   return (
     <div>
-      <h1>Store</h1>
+      <h1 className="display-4">Store</h1>
       <hr />
+      {userItems.length < 1 ? (
+        <Alert color="danger">It seems you have not added any todos yet!</Alert>
+      ) : null}
       <Row>{appendContent}</Row>
     </div>
   );
 };
 
+Store.propTypes = {
+  todo: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
-  auth: state.auth,
   todo: state.todo
 });
 

@@ -32,7 +32,7 @@ const SignupForm = ({ registerUser, error, isAuthenticated, history }) => {
   if (isAuthenticated) history.push('/dashboard');
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={(e) => onSubmit(e)}>
       {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="name">Name</Label>
@@ -87,7 +87,7 @@ const SignupForm = ({ registerUser, error, isAuthenticated, history }) => {
           onChange={onChange}
         />
       </FormGroup>
-      <Button className="btn-signup btn-block" type="submit">
+      <Button color="primary" className="btn-signup btn-block" type="submit">
         Sign Up
       </Button>
     </Form>

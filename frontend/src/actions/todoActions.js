@@ -1,7 +1,13 @@
 import axios from "axios";
-import { ITEMS_LOADING, GET_ITEMS, ADD_ITEM, GET_USER_ITEMS, DELETE_ITEM } from "./types";
+import {
+  ITEMS_LOADING,
+  GET_ITEMS,
+  ADD_ITEM,
+  GET_USER_ITEMS,
+  DELETE_ITEM
+} from "./types";
 
-import { getErrors, clearErrors } from "./errorActions";
+import { getErrors } from "./errorActions";
 
 const uri = "http://localhost:5000";
 
@@ -27,13 +33,12 @@ export const getTodos = () => async dispatch => {
       type: GET_ITEMS,
       payload: todos
     });
-
-    // Dispatch Clear Error
-    // dispatch(clearErrors());
   } catch (error) {
     console.log(error.message);
     // Dispatch Get Errors
-    dispatch(getErrors(error.response.data, error.response.status));
+    dispatch(
+      getErrors(error.response.data, error.response.status, "GET_TODOS_FAIL")
+    );
   }
 };
 
@@ -57,7 +62,9 @@ export const addTodo = ({ name }) => async dispatch => {
   } catch (error) {
     console.log(error.message);
     // Dispatch Get Errors
-    dispatch(getErrors(error.response.data, error.response.status, 'ADD_ITEM_FAIL'));
+    dispatch(
+      getErrors(error.response.data, error.response.status, "ADD_ITEM_FAIL")
+    );
   }
 };
 
@@ -84,12 +91,41 @@ export const getUserTodos = () => async dispatch => {
       type: GET_USER_ITEMS,
       payload: todos
     });
-
-    // Dispatch Clear Error
-    // dispatch(clearErrors());
   } catch (error) {
     console.log(error.message);
     // Dispatch Get Errors
-    dispatch(getErrors(error.response.data, error.response.status));
+    dispatch(
+      getErrors(
+        error.response.data,
+        error.response.status,
+        "GET_USER_ITEMS_FAIL"
+      )
+    );
+  }
+};
+
+// Delete Items
+export const deleteTodo = id => async dispatch => {
+  // Set header value
+  const config = {
+    header: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    await axios.delete(`${uri}/api/todo/${id}`, config);
+
+    // Dispatch Delete Item
+    dispatch({
+      type: DELETE_ITEM,
+      payload: id
+    });
+  } catch (error) {
+    console.log(error.message);
+    // Dispatch Get Errors
+    dispatch(
+      getErrors(error.response.data, error.response.status, "DELETE_ITEM_FAIL")
+    );
   }
 };

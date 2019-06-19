@@ -27,7 +27,7 @@ const LoginForm = ({ loginUser, error, isAuthenticated, history }) => {
   if (isAuthenticated) history.push('/dashboard');
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={(e) => onSubmit(e)}>
       {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="username">Username</Label>
@@ -49,7 +49,7 @@ const LoginForm = ({ loginUser, error, isAuthenticated, history }) => {
           onChange={onChange}
         />
       </FormGroup>
-      <Button className="btn-login btn-block" type="submit">
+      <Button color="primary" className="btn-login btn-block" type="submit">
         SIGN IN
       </Button>
     </Form>

@@ -23,7 +23,7 @@ const AddTodoForm = ({ addTodo, error }) => {
   };
 
   return (
-    <Form onSubmit={onHandleSubmit}>
+    <Form onSubmit={(e) => onHandleSubmit(e)}>
       {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="name">Todo</Label>

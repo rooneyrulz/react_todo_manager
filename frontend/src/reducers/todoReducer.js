@@ -50,7 +50,8 @@ const todoReducer = (state = initialState, action) => {
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.filter(item => item._id !== payload._id),
+        items: state.items.filter(item => item._id !== payload),
+        userItems: state.userItems.filter(item => item._id !== payload),
         isAdded: false,
         loading: false
       };

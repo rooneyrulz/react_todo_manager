@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Modal, Button, ModalHeader, ModalBody } from "reactstrap";
 
 import AddTodoForm from "../forms/AddTodoForm";
@@ -12,6 +13,13 @@ class AddTodo extends Component {
     modal: false,
     msg: null
   };
+
+  static propTypes = {
+    isAdded: PropTypes.bool,
+    error: PropTypes.object,
+    addTodo: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+  }
 
   componentDidUpdate(prevProps) {
     const { error, isAdded } = this.props;
@@ -51,7 +59,7 @@ class AddTodo extends Component {
   render() {
     return (
       <Fragment>
-        <Button className="" color="dark" onClick={this.toggle}>
+        <Button className="" color="success" onClick={this.toggle}>
           New Todo
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Dashboard = ({ auth: { user } }) => {
   return (
@@ -7,6 +8,10 @@ const Dashboard = ({ auth: { user } }) => {
       <h1 className="display-4">Welcome { user.name }</h1>
     </div>
   )
+}
+
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

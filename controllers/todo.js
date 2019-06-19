@@ -27,7 +27,7 @@ export const getTodos = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };
 
@@ -49,7 +49,7 @@ export const getTodo = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };
 
@@ -83,11 +83,7 @@ export const addTodo = async (req, res, next) => {
 
     const newTodo = await todo.save();
 
-    if (!newTodo) {
-      return res.status(500).send(`Something went wrong!`);
-    }
-
-    await author.todos.push(newTodo);
+    author.todos.push(newTodo);
 
     await author.save();
 
@@ -96,7 +92,7 @@ export const addTodo = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };
 
@@ -118,7 +114,7 @@ export const getTodoByUser = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };
 
@@ -152,17 +148,13 @@ export const deleteTodo = async (req, res, next) => {
 
     await userWithTodo.save();
 
-    const isDeleted = await Todo.deleteOne({ _id }).exec();
-
-    if (!isDeleted) {
-      return res.status(500).send('Something went wrong!');
-    }
+    await Todo.deleteOne({ _id }).exec();
 
     return res.status(200).json({
       deleted: true,
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Something went wrong!');
+    return res.status(500).send(error.message);
   }
 };

@@ -1,45 +1,56 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux';
-import { Row } from 'reactstrap';
+import React, { useEffect, Fragment } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Row, Alert } from "reactstrap";
 
-import Spinner from '../../components/spinner/Spinner';
-import Todo from '../../components/todo/Todo';
-import AddTodo from '../../components/addTodo/AddTodo';
-import './Todos.css';
+import Spinner from "../../components/spinner/Spinner";
+import Todo from "../../components/todo/Todo";
+import AddTodo from "../../components/addTodo/AddTodo";
+import "./Todos.css";
 
-import { getTodos } from '../../actions/todoActions';
+import { getTodos } from "../../actions/todoActions";
 
-class Todos extends Component {
+const Todos = ({ todo: { items, loading }, isAuthenticated, getTodos }) => {
+  useEffect(() => {
+    getTodos();
+  }, []);
 
-  componentDidMount() {
-    this.props.getTodos();
-  }
+  const appendContent = loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      {items.map(item => (
+        <Todo item={item} key={item._id} />
+      ))}
+    </Fragment>
+  );
 
-  render() {
-    const {items, loading} = this.props.todo;
-    const appendContent = loading ? <Spinner /> : (
-      <Fragment>
-        { items.map(item => <Todo todo={item} key={item._id} />) }
-      </Fragment>
-    )
+  return (
+    <section id="todos">
+      <div className="todo-header">
+        <h1 className="display-4">Todos</h1>
+        <div>{isAuthenticated ? <AddTodo /> : null}</div>
+      </div>
+      <hr />
+      {items.length < 1 ? (
+        <Alert color="danger">No todos found yet!</Alert>
+      ) : null}
+      <Row>{appendContent}</Row>
+    </section>
+  );
+};
 
-    return (
-      <section id="todos">
-        <div className="todo-header">
-          <h1 className="">Todos</h1>
-          {this.props.isAuthenticated ? <AddTodo /> : null}
-        </div>
-        <hr />
-        <Row>{appendContent}</Row>
-      </section>
-    );
-  }
-}
+Todos.propTypes = {
+  todo: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool
+};
 
 const mapStateToProps = state => ({
   todo: state.todo,
-  error: state.error,
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { getTodos })(Todos);
+export default connect(
+  mapStateToProps,
+  { getTodos }
+)(Todos);

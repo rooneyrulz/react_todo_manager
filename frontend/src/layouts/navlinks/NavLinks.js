@@ -13,11 +13,7 @@ const NavLinks = ({ isAuthenticated, logOutUser }) => {
           {isAuthenticated ? (
             <Fragment>
               <NavItem>
-                <NavLink
-                  onClick={logOutUser}
-                  className="nav-link"
-                  to="#!"
-                >
+                <NavLink onClick={logOutUser} className="nav-link" to="#!">
                   SIGN OUT
                 </NavLink>
               </NavItem>
@@ -37,18 +33,11 @@ const NavLinks = ({ isAuthenticated, logOutUser }) => {
       <Fragment>
         <Nav className="navbar-nav ml-auto">
           {isAuthenticated ? (
-            <Fragment>
-              <NavItem>
-                <NavLink className="nav-link" exact to="/dashboard">
-                  DASHBOARD
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="nav-link" exact to="/store">
-                  STORE
-                </NavLink>
-              </NavItem>
-            </Fragment>
+            <NavItem>
+              <NavLink className="nav-link" exact to="/dashboard">
+                DASHBOARD
+              </NavLink>
+            </NavItem>
           ) : (
             <Fragment>
               <NavItem>
@@ -68,6 +57,13 @@ const NavLinks = ({ isAuthenticated, logOutUser }) => {
               ABOUT
             </NavLink>
           </NavItem>
+          {isAuthenticated ? (
+            <NavItem>
+              <NavLink className="nav-link" exact to="/store">
+                STORE
+              </NavLink>
+            </NavItem>
+          ) : null}
         </Nav>
       </Fragment>
     </Fragment>
