@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Row, Alert } from "reactstrap";
 
+// Components
 import Spinner from "../../components/spinner/Spinner";
 import Todo from "../../components/todo/Todo";
 import AddTodo from "../../components/addTodo/AddTodo";
-import "./Todos.css";
 
+// Redux
 import { getTodos } from "../../actions/todoActions";
 
 const Todos = ({ todo: { items, loading }, isAuthenticated, getTodos }) => {

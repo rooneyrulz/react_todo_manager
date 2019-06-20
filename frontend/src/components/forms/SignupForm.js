@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-import "./Forms.css";
-
 const SignupForm = ({ registerUser, error, isAuthenticated, history }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,10 +27,10 @@ const SignupForm = ({ registerUser, error, isAuthenticated, history }) => {
     registerUser(payload);
   };
 
-  if (isAuthenticated) history.push('/dashboard');
+  if (isAuthenticated) history.push("/dashboard");
 
   return (
-    <Form onSubmit={(e) => onSubmit(e)}>
+    <Form onSubmit={e => onSubmit(e)}>
       {error !== null && <Alert color="danger">{error}</Alert>}
       <FormGroup>
         <Label htmlFor="name">Name</Label>

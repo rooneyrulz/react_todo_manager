@@ -11,3 +11,24 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
 }
+
+/* Header */
+.AppNavbar {
+  background:#222;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Operator Mono'
+}
+
+/* Home & Dashboard */
+
+
+/* Todos */
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

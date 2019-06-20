@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Button, ModalHeader, ModalBody } from "reactstrap";
 
+// Components
 import AddTodoForm from "../forms/AddTodoForm";
 
+// Redux
 import { addTodo } from "../../actions/todoActions";
 import { clearErrors } from "../../actions/errorActions";
 

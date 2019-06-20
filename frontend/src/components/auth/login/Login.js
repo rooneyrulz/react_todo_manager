@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, NavLink, ModalHeader, ModalBody } from "reactstrap";
 
+// Components
 import LoginForm from "../../forms/LoginForm";
 
+// Redux
 import { loginUser } from "../../../actions/authActions";
 import { clearErrors } from "../../../actions/errorActions";
 

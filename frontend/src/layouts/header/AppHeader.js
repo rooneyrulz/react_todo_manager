@@ -9,9 +9,10 @@ import {
   Collapse
 } from "reactstrap";
 
-import "./AppHeader.css";
+// Components
 import NavLinks from "../navlinks/NavLinks";
 
+// Redux
 import { logOutUser } from "../../actions/authActions";
 
 const AppHeader = ({ isAuthenticated, logOutUser }) => {
@@ -21,7 +22,7 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
     setState({ ...state, isOpen: !state.isOpen });
   };
   return (
-    <Navbar className="AppNavbar" dark expand="md">
+    <Navbar className="AppNavbar py-3" dark expand="md">
       <Container>
         <NavbarBrand href="/home">Todo Manager</NavbarBrand>
         <NavbarToggler onClick={toggle} />

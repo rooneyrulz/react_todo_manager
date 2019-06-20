@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Row, Alert } from "reactstrap";
 
+// Components
 import Spinner from "../../components/spinner/Spinner";
 import Todo from "../../components/todo/Todo";
 
+// Redux
 import { getUserTodos } from "../../actions/todoActions";
 
 const Store = ({ todo: { userItems, loading }, getUserTodos }) => {

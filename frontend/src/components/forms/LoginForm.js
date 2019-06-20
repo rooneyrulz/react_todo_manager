@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-import "./Forms.css";
-
 const LoginForm = ({ loginUser, error, isAuthenticated, history }) => {
   const [formData, setFormData] = useState({
     username: "",

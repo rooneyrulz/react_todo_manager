@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { NavItem, Nav } from "reactstrap";
 
+// Components
 import Signup from "../../components/auth/signup/Signup";
 import Login from "../../components/auth/login/Login";
 

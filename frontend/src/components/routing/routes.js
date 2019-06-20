@@ -1,20 +1,18 @@
 import React, { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { Container, Alert } from "reactstrap";
+import { Container } from "reactstrap";
 
+// Components
 import Todos from "../../pages/todos/Todos";
 import Home from "../../pages/home/Home";
 import Dashboard from "../../pages/dashboard/Dashboard";
 import Store from "../../pages/store/Store";
 import About from "../../pages/about/About";
 
+// Private Route
 import PrivateRoute from "../routing/PrivateRoute";
 
-const Routes = ({ error }) => {
-  const appendAlert = error.msg !== null && (
-    <Alert color="danger">{error.msg}</Alert>
-  );
+const Routes = () => {
   return (
     <Container>
       <Fragment>
@@ -31,8 +29,4 @@ const Routes = ({ error }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  error: state.error
-});
-
-export default connect(mapStateToProps)(Routes);
+export default Routes;
