@@ -10,7 +10,7 @@ import Store from "../../pages/store/Store";
 import About from "../../pages/about/About";
 
 // Private Route
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./privateRoute";
 
 const routes = () => {
   return (
