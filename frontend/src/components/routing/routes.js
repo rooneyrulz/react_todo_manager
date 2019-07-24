@@ -12,7 +12,7 @@ import About from "../../pages/about/About";
 // Private Route
 import PrivateRoute from "../routing/PrivateRoute";
 
-const Routes = () => {
+const routes = () => {
   return (
     <Container>
       <Fragment>
@@ -29,4 +29,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export default routes;
