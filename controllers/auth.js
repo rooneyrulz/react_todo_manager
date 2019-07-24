@@ -49,7 +49,9 @@ export const getAuthUser = async (req, res, next) => {
   const { id } = req.user;
 
   try {
-    const user = await User.findOne({ _id: id }).exec();
+    const user = await User.findOne({ _id: id })
+      .populate('todos')
+      .exec();
 
     if (!user) {
       return res.status(401).send('Unauthorized!');

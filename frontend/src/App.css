@@ -23,6 +23,22 @@ body {
   font-family: 'Operator Mono'
 }
 
+#navItem-store {
+  display: flex !important;
+  justify-content: space-between !important;;
+}
+
+#store-icon {
+  width: 50px !important;
+  height: 50px !important;
+  background: crimson !important;
+  border-radius: 2rem;
+  color: #fff;
+  text-align: center;
+  align-items: center !important;
+  padding-top: .4em;
+}
+
 /* Home & Dashboard */
 
 

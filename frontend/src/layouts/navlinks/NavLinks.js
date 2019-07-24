@@ -59,7 +59,7 @@ const NavLinks = ({ isAuthenticated, logOutUser }) => {
             </NavLink>
           </NavItem>
           {isAuthenticated ? (
-            <NavItem>
+            <NavItem id="navItem-store">
               <NavLink className="nav-link" exact to="/store">
                 STORE
               </NavLink>

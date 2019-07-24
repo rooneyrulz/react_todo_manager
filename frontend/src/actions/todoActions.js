@@ -25,7 +25,7 @@ export const getTodos = () => async dispatch => {
 
   try {
     // Get Todos
-    const { data } = await axios.get(`${uri}/api/todos`, config);
+    const { data } = await axios.get(`/api/todos`, config);
     const { todos } = data;
 
     // Dispatch Get Items
@@ -51,7 +51,7 @@ export const addTodo = ({ name }) => async dispatch => {
   };
 
   try {
-    const { data } = await axios.post(`${uri}/api/todo`, { name }, config);
+    const { data } = await axios.post(`/api/todo`, { name }, config);
     const { todo } = data;
 
     // Dispatch Add Item
@@ -83,7 +83,7 @@ export const getUserTodos = () => async dispatch => {
 
   try {
     // Get Todos
-    const { data } = await axios.get(`${uri}/api/todo/auth/todos`, config);
+    const { data } = await axios.get(`/api/todo/auth/todos`, config);
     const { todos } = data;
 
     // Dispatch Get Items
@@ -114,7 +114,7 @@ export const deleteTodo = id => async dispatch => {
   };
 
   try {
-    await axios.delete(`${uri}/api/todo/${id}`, config);
+    await axios.delete(`/api/todo/${id}`, config);
 
     // Dispatch Delete Item
     dispatch({

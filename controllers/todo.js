@@ -75,7 +75,7 @@ export const addTodo = async (req, res, next) => {
       return res.status(401).send(`Unauthorized!`);
     }
 
-    const todo = Todo({
+    const todo = new Todo({
       _id: new mongoose.Types.ObjectId(),
       name,
       author,
@@ -83,7 +83,7 @@ export const addTodo = async (req, res, next) => {
 
     const newTodo = await todo.save();
 
-    author.todos.push(newTodo);
+    author.todos.unshift(newTodo);
 
     await author.save();
 

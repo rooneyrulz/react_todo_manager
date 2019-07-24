@@ -3,6 +3,7 @@ import express from 'express';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
+import path from 'path';
 
 // Import MongoDB Connection
 import db from './config/db';
@@ -50,6 +51,16 @@ app.use('/api/test', testRoute);
 app.use('/api', todoRoute);
 app.use('/api', userRoute);
 app.use('/api', authRoute);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 server.listen(process.env.PORT || 5000, () =>
   console.log(`server running on port ${process.env.PORT || 5000}...`)

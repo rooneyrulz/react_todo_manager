@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Navbar,
   NavbarBrand,
   NavbarToggler,
   Container,
   Collapse
-} from "reactstrap";
+} from 'reactstrap';
 
 // Components
-import NavLinks from "../navlinks/NavLinks";
+import NavLinks from '../navlinks/NavLinks';
 
 // Redux
-import { logOutUser } from "../../actions/authActions";
+import { logOutUser } from '../../actions/authActions';
 
-const AppHeader = ({ isAuthenticated, logOutUser }) => {
+const AppHeader = ({ auth: { isAuthenticated }, logOutUser }) => {
   const [state, setState] = useState({ isOpen: false });
 
   const toggle = () => {
@@ -38,12 +38,12 @@ const AppHeader = ({ isAuthenticated, logOutUser }) => {
 };
 
 AppHeader.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
   logOutUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(

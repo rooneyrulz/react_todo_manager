@@ -14,7 +14,7 @@ export default async () => {
       console.log(`connecting to mongodb...`);
     }
   } catch (error) {
-    process.exit(1);
+    await process.exit(1);
     throw error.message;
   }
 };

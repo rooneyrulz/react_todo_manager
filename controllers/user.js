@@ -101,7 +101,7 @@ export const addUser = async (req, res, next) => {
       return res.status(500).send('Something went wrong!');
     }
 
-    const user = User({
+    const user = new User({
       _id: new mongoose.Types.ObjectId(),
       name,
       username,

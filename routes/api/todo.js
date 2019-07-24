@@ -1,6 +1,12 @@
 import { Router } from 'express';
 
-import { getTodos, getTodo, addTodo, getTodoByUser, deleteTodo } from '../../controllers/todo';
+import {
+  getTodos,
+  getTodo,
+  addTodo,
+  getTodoByUser,
+  deleteTodo,
+} from '../../controllers/todo';
 
 // Import Auth Middleware
 import isAuth from '../../middleware/auth';

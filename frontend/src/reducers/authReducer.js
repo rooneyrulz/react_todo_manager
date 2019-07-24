@@ -13,7 +13,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   loading: false,
-  user: null
+  user: {}
 };
 
 const authReducer = (state = initialState, action) => {
@@ -30,7 +30,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        loading: true,
+        loading: false,
         user: payload
       };
 
