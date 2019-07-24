@@ -10,7 +10,8 @@
     "frontend": "npm start --prefix frontend",
     "start": "node -r esm server.js",
     "server": "nodemon -r esm server.js",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
