@@ -10,9 +10,9 @@ import Store from "../../pages/store/Store";
 import About from "../../pages/about/About";
 
 // Private Route
-import PrivateRoute from "../routing/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
-const routes = () => {
+const Routes = () => {
   return (
     <Container>
       <Fragment>
@@ -29,4 +29,4 @@ const routes = () => {
   );
 };
 
-export default routes;
+export default Routes;

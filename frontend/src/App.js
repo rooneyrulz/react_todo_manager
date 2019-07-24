@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 // Components
 import AppHeader from "./layouts/header/AppHeader";
-import RoutingComponents from "./components/routing/routes";
+import RoutingComponents from "./components/routing/Routes";
 import AppFooter from "./layouts/footer/AppFooter";
 import "./App.css";
 
